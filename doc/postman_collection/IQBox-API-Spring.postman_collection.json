@@ -1,0 +1,309 @@
+{
+	"info": {
+		"_postman_id": "ece06a79-5794-46f5-9efa-41d5a2ab7c2b",
+		"name": "IQBox-API-Spring",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8397244"
+	},
+	"item": [
+		{
+			"name": "getTokenFromAuthServer (Password Flow authServer)",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "$2a$10$Alq.pO0r.Eb1H2UE/4/LGu.kUgJFDBQBb46rKfArbtXl/XUBPlAFm",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "iqt-client",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "client_id",
+						"value": "iqt-client",
+						"type": "text"
+					},
+					{
+						"key": "grant_type",
+						"value": "password",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "admin@correo.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "openid,write",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:9000/oauth2/token",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "9000",
+					"path": [
+						"oauth2",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RefreshTokenFromAuthServer",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "$2a$10$Alq.pO0r.Eb1H2UE/4/LGu.kUgJFDBQBb46rKfArbtXl/XUBPlAFm",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "iqt-client",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "grant_type",
+							"value": "refresh_token",
+							"type": "text"
+						},
+						{
+							"key": "refresh_token",
+							"value": "ijbImcfanKcbUEzLoksy6OZ_OZ135GAOtJ4XK0Mz0SVkB3iIEtWfC2J7FWFE0VVoIldcj9rNRdu2sXaS11zoIAbEtbHWxMvpn8pq9m5JNx0v7SqJHIbfqMXSODguhUE0",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:9000/oauth2/token",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "9000",
+					"path": [
+						"oauth2",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "requestToken (custom)",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"admin@correo.com\" ,\r\n    \"password\":\"123456\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/login/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"login",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "refreshToken (custom)",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"refreshToken\":\"c9-Nj66-tUV2fABXtx7FqGfJjHCVra6c5zTiGa-G-Fzx9RdMoENhF2YscU_atHHW4D9VoLzZYkP_YzirHduFwlO8SoJKVRgWzWwrhPMJc2F6rXbO9fKRkaI-Fn-O7bqd\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/login/refresh",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"login",
+						"refresh"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "userListPageable",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJraWQiOiJiNDc4ZDY4Ny04Mjk0LTRkNDgtODMzZi1mY2NjMWU0N2FlYTkiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJhZG1pbkBjb3JyZW8uY29tIiwiYXVkIjoiaXF0LWNsaWVudCIsIm5iZiI6MTcxODk4MDI4MCwic2NvcGUiOlsicmVhZCIsIndyaXRlIl0sImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6OTAwMCIsIkF0dHJpYnV0ZXMiOiJhdHRyaWJ1dGVzIiwiZXhwIjoxNzE5MDY2NjgwLCJpYXQiOjE3MTg5ODAyODAsImp0aSI6IjdiYmNhZWU5LTBlMjYtNDBiNS05YTY3LTc3N2JiMThjNjA2NiIsImF1dGhvcml0aWVzIjpbIkFETUlOIiwiVVNFUiJdfQ.IZjB8CBhbGmGeF41c1LjWqmQea_aFxU1FXYGHfdoy4PggQb_94PUFjoJvGb_FgXC6Qz1q8_zTCYd9jeu3OCFrNSip40OzP9qisSueG5JCwSiCtfglbIrVYV2AhisqaTJnd4axWg8WtMPCux7jRAG6zn3WKBYI67VTr11aHyMYs16v3VKC5owIc6U99rVpNdQhFVnNHpE15PZsq7VFYyivG9Wesye1dq1zkCCQOwK8VmE7tr9psgqjWPJ36Kkv8Yum4RLlK5ZGSMJB7NKJyaqf-TpHMxd9D01iX7FHOeegg9l5uC2aWGe6xhf8tSzMag3-OSaGEjIFOFHbIesSWx5Dw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/api/user/all/pageables?page=1&elements=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"user",
+						"all",
+						"pageables"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "elements",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pageableOriginal",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJraWQiOiJiNDc4ZDY4Ny04Mjk0LTRkNDgtODMzZi1mY2NjMWU0N2FlYTkiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJhZG1pbkBjb3JyZW8uY29tIiwiYXVkIjoiaXF0LWNsaWVudCIsIm5iZiI6MTcxODk4MDI4MCwic2NvcGUiOlsicmVhZCIsIndyaXRlIl0sImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6OTAwMCIsIkF0dHJpYnV0ZXMiOiJhdHRyaWJ1dGVzIiwiZXhwIjoxNzE5MDY2NjgwLCJpYXQiOjE3MTg5ODAyODAsImp0aSI6IjdiYmNhZWU5LTBlMjYtNDBiNS05YTY3LTc3N2JiMThjNjA2NiIsImF1dGhvcml0aWVzIjpbIkFETUlOIiwiVVNFUiJdfQ.IZjB8CBhbGmGeF41c1LjWqmQea_aFxU1FXYGHfdoy4PggQb_94PUFjoJvGb_FgXC6Qz1q8_zTCYd9jeu3OCFrNSip40OzP9qisSueG5JCwSiCtfglbIrVYV2AhisqaTJnd4axWg8WtMPCux7jRAG6zn3WKBYI67VTr11aHyMYs16v3VKC5owIc6U99rVpNdQhFVnNHpE15PZsq7VFYyivG9Wesye1dq1zkCCQOwK8VmE7tr9psgqjWPJ36Kkv8Yum4RLlK5ZGSMJB7NKJyaqf-TpHMxd9D01iX7FHOeegg9l5uC2aWGe6xhf8tSzMag3-OSaGEjIFOFHbIesSWx5Dw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/api/user/all/pageable?page=1&elements=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"user",
+						"all",
+						"pageable"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "elements",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

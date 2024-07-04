@@ -1,0 +1,20 @@
+title Backend API with Oauth 2.0
+
+
+User->Client-App:Client App Execution for login
+
+Client-App->Auth-server: Json request user & Password
+
+
+Auth-server <- Auth-server: User credentials and ClientApp validation.
+
+
+
+Client-App<-Auth-server: Json Response with Token info & data.
+
+Client-App-->API: Json Request API with Token.
+
+
+Client-App<--API: Json Response with Data.
+
+User <- Client-App: Show the data

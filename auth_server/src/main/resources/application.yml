@@ -1,0 +1,65 @@
+server:
+   port: 9000
+   server-uri: http://localhost
+   token-uri: /oauth2/token
+
+logging:
+  level:
+     org:
+       springframework:
+         security: TRACE
+         oauth2: TRACE
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/authentication
+    username: postgres
+    password: root
+  application:
+    name: auth_server
+  security:
+     oauth2:
+       authorization:
+         server:
+           client:
+             oidc-client:
+                registration:
+                  client-id: 'iqt-client'
+                  client-secret: '$2a$10$Alq.pO0r.Eb1H2UE/4/LGu.kUgJFDBQBb46rKfArbtXl/XUBPlAFm'
+                  authorization-password: 'password'
+                  auth-password: 'password'
+                  auth-refresh-token: 'refresh_token'
+                  redirect-uri: 'http://127.0.0.1:8080/login/oauth2/code/oidc-client'
+                  post-logout-redirect-uri:  'http://127.0.0.1:8080/'
+                  token-validity-seconds: '86400'
+                  refresh-token-validity-seconds: '86400'
+                  scopes:
+                    read: 'read'
+                    write: 'write'
+     cors:
+       allowed-origin: '*'
+       allowed-method: 'POST,GET'
+       max-age: '3600'
+       allowed-header: 'x-requested-with,authorization,content-type'
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+
+springdoc:
+  swagger-ui:
+  openapi:
+    server:
+      url: ''
+      description: ''
+    contact:
+      name: 'Contact Name'
+      email: 'contact@iqtsystems.com'
+    info:
+      title: 'IQBox-API Security Spring'
+      version: '1.0'
+      description: 'Documentación de la API de seguridad de IQ.'
+
+test-uri: http://localhost:9000/.well-known/openid-configuration
+

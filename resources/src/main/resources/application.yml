@@ -1,0 +1,49 @@
+server:
+  port: 8081
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/authentication
+    username: postgres
+    password: root
+  application:
+    name: resources
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  security:
+    oauth2:
+      resourceserver:
+          jwt:
+            issuer-uri: http://localhost:9000
+      auth-server:
+        base-uri: http://127.0.0.1:9000
+       # client: iqt-client
+       # secret: '$2a$10$Alq.pO0r.Eb1H2UE/4/LGu.kUgJFDBQBb46rKfArbtXl/XUBPlAFm'
+  cors:
+    allowed-origin: '*'
+    allowed-method: 'POST,GET'
+    max-age: '3600'
+    allowed-header: 'x-requested-with,authorization,content-type'
+
+logging:
+  level:
+    org:
+      springframework:
+        security: TRACE
+
+
+springdoc:
+  swagger-ui:
+  openapi:
+    server:
+      url: ''
+      description: ''
+    contact:
+      name: 'Contact Name'
+      email: 'contact@iqtsystems.com'
+    info:
+      title: 'IQBox-API '
+      version: '1.0'
+      description: 'Documentación de la API  de IQ.'
