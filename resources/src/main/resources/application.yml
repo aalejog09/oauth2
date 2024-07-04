@@ -19,8 +19,6 @@ spring:
             issuer-uri: http://localhost:9000
       auth-server:
         base-uri: http://127.0.0.1:9000
-       # client: iqt-client
-       # secret: '$2a$10$Alq.pO0r.Eb1H2UE/4/LGu.kUgJFDBQBb46rKfArbtXl/XUBPlAFm'
   cors:
     allowed-origin: '*'
     allowed-method: 'POST,GET'

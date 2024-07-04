@@ -17,8 +17,6 @@ import org.springframework.stereotype.Component;
 public class AuthServerParams {
 
     private String baseUri;
-    //private String client;
-    //private String secret;
 
 
 
