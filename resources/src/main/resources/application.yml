@@ -19,11 +19,11 @@ spring:
             issuer-uri: http://localhost:9000
       auth-server:
         base-uri: http://127.0.0.1:9000
-  cors:
-    allowed-origin: '*'
-    allowed-method: 'POST,GET'
-    max-age: '3600'
-    allowed-header: 'x-requested-with,authorization,content-type'
+    cors:
+      allowed-origin: '*'
+      allowed-method: 'POST,GET'
+      max-age: '3600'
+      allowed-header: 'x-requested-with,authorization,content-type'
 
 logging:
   level:

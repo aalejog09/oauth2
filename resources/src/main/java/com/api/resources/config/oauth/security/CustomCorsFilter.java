@@ -42,6 +42,7 @@ public class CustomCorsFilter implements Filter {
         response.setHeader("Access-Control-Max-Age",corsProperties.getMaxAge());
         response.setHeader("Access-Control-Allow-Headers",corsProperties.getAllowedHeader());
 
+
         if("OPTIONS".equalsIgnoreCase(request.getMethod())){
             response.setStatus(HttpServletResponse.SC_OK);
         }else{
