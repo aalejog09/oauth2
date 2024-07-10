@@ -5,6 +5,7 @@ import java.util.*;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
@@ -23,6 +24,19 @@ public class APIExceptionHandler {
         return ResponseEntity.badRequest().body(ErrorDTO.builder()
                 .code(APIError.VALIDATION_ERROR.getCode())
                 .description(APIError.VALIDATION_ERROR.getHttpStatus().getReasonPhrase())
+                .detail(errors)
+                .build());
+    }
+
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public ResponseEntity<?> notValids(Exception ex, HttpServletRequest request) {
+        List<String> errors = new ArrayList<>();
+        errors.add(APIError.MISSING_REQUEST_BODY.getMessage());
+
+
+        return ResponseEntity.badRequest().body(ErrorDTO.builder()
+                .code(APIError.MISSING_REQUEST_BODY.getCode())
+                .description(APIError.MISSING_REQUEST_BODY.getHttpStatus().getReasonPhrase())
                 .detail(errors)
                 .build());
     }

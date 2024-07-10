@@ -55,9 +55,9 @@ springdoc:
       description: ''
     contact:
       name: 'Contact Name'
-      email: 'contact@iqtsystems.com'
+      email: 'contact@correo.com'
     info:
-      title: 'IQBox-API Security Spring'
+      title: 'BASE API Security Spring'
       version: '1.0'
       description: 'Documentación de la API de seguridad de IQ.'
 

@@ -5,6 +5,7 @@ import com.oauth.server.dto.token.RefreshTokenDTO;
 import com.oauth.server.dto.token.TokenResponseDTO;
 import com.oauth.server.dto.token.TokenRequestDTO;
 import com.oauth.server.services.interfaces.ILoginService;
+import com.oauth.server.util.documentation.SwaggerGenericResponses;
 import com.oauth.server.util.exceptions.ErrorDTO;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
@@ -24,63 +25,21 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/login")
 public class LoginController {
 
-
     @Autowired
     ILoginService loginService;
 
-
+    @SwaggerGenericResponses
     @PostMapping("/token")
-    @ApiResponses({
-            @ApiResponse(
-                    responseCode="200",
-                    content =@Content(
-                            mediaType = MediaType.APPLICATION_JSON_VALUE,
-                            schema = @Schema(implementation= TokenResponseDTO.class),
-                            examples = @ExampleObject(name="responseDTOExample",value="see TokenResponseDTO class for examples"))
-            ),
-            @ApiResponse(
-                    responseCode = "400",
-                    content = @Content(
-                            mediaType = MediaType.APPLICATION_JSON_VALUE,
-                            schema = @Schema(implementation = ErrorDTO.class),
-                            examples = @ExampleObject(name="ErrorDTOExample",value="see ErrorDTO class for examples")
-                    )
-            )
-    })
-    public ResponseEntity<?> requestToken(@Valid @RequestBody TokenRequestDTO tokenRequestDTO){
-        log.info("userDataRq: {}",tokenRequestDTO);
+    public ResponseEntity<TokenResponseDTO> requestToken(@Valid @RequestBody TokenRequestDTO tokenRequestDTO){
         TokenResponseDTO response = loginService.getToken(tokenRequestDTO);
-        log.info("response= {}",response);
         return ResponseEntity.ok().body(response);
     }
 
-
-    @ApiResponses({
-            @ApiResponse(
-                    responseCode="200",
-                    content =@Content(
-                            mediaType = MediaType.APPLICATION_JSON_VALUE,
-                            schema = @Schema(implementation= TokenResponseDTO.class),
-                            examples = @ExampleObject(name="responseDTOExample",value="see TokenResponseDTO class for examples"))
-            ),
-            @ApiResponse(
-                    responseCode = "400",
-                    content = @Content(
-                            mediaType = MediaType.APPLICATION_JSON_VALUE,
-                            schema = @Schema(implementation = ErrorDTO.class),
-                            examples = @ExampleObject(name="ErrorDTOExample",value="see ErrorDTO class for examples")
-                    )
-            )
-    })
+    @SwaggerGenericResponses
     @PostMapping("/refresh")
     public ResponseEntity<TokenResponseDTO> refreshToken(@Valid @RequestBody RefreshTokenDTO request){
-        log.info("refreshToken: {}",request);
         TokenResponseDTO response = loginService.getRefreshToken(request);
-        log.info("response: {}",response);
         return ResponseEntity.ok().body(response);
     }
-
-
-
 }
 

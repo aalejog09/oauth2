@@ -40,8 +40,8 @@ springdoc:
       description: ''
     contact:
       name: 'Contact Name'
-      email: 'contact@iqtsystems.com'
+      email: 'contact@correo.com'
     info:
-      title: 'IQBox-API '
+      title: 'BaseAPI '
       version: '1.0'
-      description: 'Documentación de la API  de IQ.'
+      description: 'Documentación de la API '

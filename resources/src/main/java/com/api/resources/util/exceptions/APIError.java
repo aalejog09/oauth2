@@ -11,8 +11,11 @@ public enum APIError {
 
     VALIDATION_ERROR("E0001",HttpStatus.BAD_REQUEST, "The are attributes with wrong values", Collections.emptyList()),
     TOKEN_EXPIRED("E0002", HttpStatus.BAD_REQUEST, "Error Token Expired", List.of("")),
-    ARGUMENT_NOT_VALID("E0003", HttpStatus.BAD_REQUEST, "Input value not suported for field: ", List.of("")),
+    MISSING_REQUEST_BODY("E0003",HttpStatus.BAD_REQUEST, "Required request body is missing", Collections.emptyList()),
+    ARGUMENT_NOT_VALID("E0004", HttpStatus.BAD_REQUEST, "Input value not supported for field: ", List.of("")),
+    NOT_FOUND("E0005", HttpStatus.NOT_FOUND, "The requested information does not exist", List.of(""))
     ;
+
 
     private final String code;
     private final String message;
